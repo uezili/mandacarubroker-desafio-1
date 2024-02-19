@@ -5,6 +5,13 @@ A Mandacaru Broker API é uma aplicação Spring Boot que fornece operações CR
 
 ## Recursos
 
+### Documentação do Swagger
+
+**Endpoint:**
+```
+/swagger-ui/
+```
+
 ### Listar Todas as Ações
 Retorna uma lista de todas as ações disponíveis.
 
@@ -33,7 +40,7 @@ POST /stocks
 
 ```JSON
 {
-  "symbol": "BBAS3",
+  "symbol": "BBA3",
   "companyName": "Banco do Brasil SA",
   "price": 56.97
 }
@@ -50,7 +57,7 @@ PUT /stocks/{id}
 
 ```JSON
 {
-  "symbol": "BBAS3",
+  "symbol": "BBA3",
   "companyName": "Banco do Brasil SA",
   "price": 59.97
 }
@@ -66,10 +73,13 @@ DELETE /stocks/{id}
 ```
 
 
-## Uso
+## Passo-a-passo de como configurar o ambiente
 1. Clone o repositório: `git clone https://github.com/seu-usuario/MandaCaruBrokerAPI.git`
 2. Importe o projeto em sua IDE preferida.
-3. Configure o banco de dados e as propriedades de aplicação conforme necessário.
+3. Configure o banco de dados no arquivo `application.properties`, caminho para o arquivo:
+```
+src/main/resources/application.properties
+```
 4. Execute o aplicativo Spring Boot.
 5. Acesse a API em `http://localhost:8080`.
 
