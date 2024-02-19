@@ -6,40 +6,33 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Table(name ="stock")
-@Entity(name="stock")
+@Table(name = "stock")
+@Entity(name = "stock")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
 public class Stock {
 
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String symbol;
     private String companyName;
     private double price;
 
-    public Stock(RequestStockDTO requestStockDTO){
+    public Stock(RequestStockDTO requestStockDTO) {
         this.symbol = requestStockDTO.symbol();
         this.companyName = requestStockDTO.companyName();
-        this.price = changePrice(requestStockDTO.price(), true);
+        this.price = changePrice(requestStockDTO.price());
     }
 
-    public double changePrice(double amount, boolean increase) {
-        if (increase) {
-            if (amount < this.price) {
-                return increasePrice(amount);
-            } else {
-                return decreasePrice(amount);
-            }
+    public double changePrice(double amount) {
+        if (amount >= this.price) {
+            return increasePrice(amount);
         } else {
-            if (amount > this.price) {
-                return increasePrice(amount);
-            } else {
-                return this.decreasePrice(amount);
-            }
+            return decreasePrice(amount);
         }
     }
 
